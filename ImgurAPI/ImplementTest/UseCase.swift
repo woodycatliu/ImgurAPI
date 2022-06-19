@@ -32,7 +32,7 @@ struct UseCase: ExcuteUseCase {
     
     func fetchImage(loader: ImgurAPI, _ page: Int) -> AnyPublisher<[GalleryImage]?, Error> {
         return loader.searchGallery(query: "cats", page: page)
-            .compactMap { $0?.reduce([GalleryImage](), { return $0 + ($1.images ?? [])}) }
+            .compactMap { $0?.reduce([GalleryImage](), { return $0 + ($1.images?.filter { $0.isImage } ?? [])}) }
             .eraseToAnyPublisher()
     }
 }

@@ -54,7 +54,7 @@ extension ImgurAPI {
         let baseURL = baseURL.appendingPathComponent("/gallery/search")
             .appendingPathComponent(sort.rawValue)
             .appendingPathComponent(String(page))
-        let parameters: [String : CustomStringConvertible] = ["q": query]
+        let parameters: [String : CustomStringConvertible] = ["q": query, "q_size_px": "small"]
         
         guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false) else {
             return nil

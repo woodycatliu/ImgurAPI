@@ -15,25 +15,16 @@ class CollectionViewController: UICollectionViewController {
         return ViewModel(UseCase())
     }()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView!.register(Cell.self, forCellWithReuseIdentifier: Cell.description())
         self.collectionView!.register(BigCell.self, forCellWithReuseIdentifier: BigCell.description())
 
-        viewModel.$images.sink(receiveValue: {_ in
-            self.collectionView.reloadData()
-        }).store(in: &bag)
+        Binding()
         viewModel.fetchFirstPage()
+
         
-        viewModel.$style.sink(receiveValue: { [weak self] in
-            self?.collectionView.collectionViewLayout = makeCollectionViewFlowlayout($0)
-            self?.collectionView.reloadData()
-        }).store(in: &bag)
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 8 ) {
-            self.viewModel.togleStyle()
-        }
     }
 
    
@@ -65,4 +56,34 @@ private func makeCollectionViewFlowlayout(_ style: CollectionViewStyle)-> UIColl
     collectionViewLayout.itemSize = itemSize
     
     return collectionViewLayout
+}
+
+// MARK: Binding
+extension CollectionViewController {
+    fileprivate func Binding() {
+        viewModel.$images.sink(receiveValue: {_ in
+            self.collectionView.reloadData()
+        }).store(in: &bag)
+                
+        viewModel.$style.sink(receiveValue: { [weak self] in
+            self?.collectionView.collectionViewLayout = makeCollectionViewFlowlayout($0)
+            self?.collectionView.reloadData()
+        }).store(in: &bag)
+        
+        collectionView.publisher(for: \.contentOffset)
+            .sink(receiveValue: { [weak self] in self?.loadMoreIfNeed($0)} )
+            .store(in: &bag)
+        
+    }
+}
+
+// MARK: logic
+extension CollectionViewController {
+    
+    private func loadMoreIfNeed(_ point: CGPoint) {
+        let offsetHeight = point.y
+        if offsetHeight >= collectionView.contentSize.height - collectionView.bounds.height {
+            self.viewModel.nextPage()
+        }
+    }
 }

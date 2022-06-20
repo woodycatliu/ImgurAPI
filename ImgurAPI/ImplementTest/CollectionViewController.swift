@@ -79,12 +79,14 @@ private func makeCollectionViewFlowlayout(_ style: CollectionViewStyle, isShowFo
 // MARK: Binding
 extension CollectionViewController {
     fileprivate func Binding() {
+        // images 更新刷 cv
         viewModel.$images
             .receive(on: RunLoop.main)
             .sink(receiveValue: {_ in
             self.collectionView.reloadData()
         }).store(in: &bag)
 
+        // ffetchStatus 改為 finished 重整 cv 隱藏 footer
         viewModel.$fetchStatus
             .removeDuplicates()
             .filter {
@@ -95,10 +97,12 @@ extension CollectionViewController {
                 self?.collectionView.reloadData()
         }).store(in: &bag)
 
+        // style 更改刷新頁面
         viewModel.$style.sink(receiveValue: { [weak self] _ in
             self?.collectionView.reloadData()
         }).store(in: &bag)
         
+        // 觀察 scollview contentoffset 確認是否要讀取更多 img
         collectionView.publisher(for: \.contentOffset)
             .sink(receiveValue: { [weak self] in self?.loadMoreIfNeed($0)} )
             .store(in: &bag)

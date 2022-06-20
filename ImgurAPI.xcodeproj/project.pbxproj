@@ -77,6 +77,7 @@
 		EFB31752285FA8C1002093A7 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		EFB31754285FA8EA002093A7 /* BigCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCell.swift; sourceTree = "<group>"; };
 		EFEAE5982860066D0019E229 /* RefreshFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshFooterView.swift; sourceTree = "<group>"; };
+		EFEAE59A286039040019E229 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +128,7 @@
 		AD4FA277281AD44C00BBCACA /* ImgurAPI */ = {
 			isa = PBXGroup;
 			children = (
-				EFB31751285FA8B8002093A7 /* View */,
+				EFEAE59A286039040019E229 /* README.md */,
 				EFB3173F285F5A06002093A7 /* ImplementTest */,
 				AD4FA2AB281AE9B300BBCACA /* Model */,
 				AD4FA2A8281ADC8200BBCACA /* Networking */,
@@ -135,7 +136,6 @@
 				AD4FA278281AD44C00BBCACA /* AppDelegate.swift */,
 				AD4FA27A281AD44C00BBCACA /* SceneDelegate.swift */,
 				AD4FA27C281AD44C00BBCACA /* ViewController.swift */,
-				EFB3174D285F8EDC002093A7 /* CollectionViewController.swift */,
 				AD4FA27E281AD44C00BBCACA /* Main.storyboard */,
 				AD4FA281281AD44C00BBCACA /* Assets.xcassets */,
 				AD4FA283281AD44C00BBCACA /* LaunchScreen.storyboard */,
@@ -198,11 +198,13 @@
 		EFB3173F285F5A06002093A7 /* ImplementTest */ = {
 			isa = PBXGroup;
 			children = (
+				EFB31751285FA8B8002093A7 /* View */,
 				EFB31745285F5AD5002093A7 /* UseCase.swift */,
 				EFB3174F285F964A002093A7 /* ImageLoader.swift */,
 				EFB31747285F5C06002093A7 /* ViewModel.swift */,
 				EFB31749285F7509002093A7 /* ViewModelEnum.swift */,
 				EFB3174B285F88FB002093A7 /* CellViewModel.swift */,
+				EFB3174D285F8EDC002093A7 /* CollectionViewController.swift */,
 			);
 			path = ImplementTest;
 			sourceTree = "<group>";

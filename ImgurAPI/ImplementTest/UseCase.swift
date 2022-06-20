@@ -14,14 +14,16 @@ protocol Nextable {
 }
 
 protocol ExcuteUseCase {
+    // 取得下頁
     func nextPage(_ status: FetchStatus)-> FetchStatus
+    // 更改 cell layout
     func nextStyle(_ style: CollectionViewStyle)-> CollectionViewStyle
+    // 取 image
     func fetchImage(loader: ImgurAPI, _ page: Int)-> AnyPublisher<[GalleryImage]?, Error>
 }
 
  
 struct UseCase: ExcuteUseCase {
-    
     func nextStyle(_ style: CollectionViewStyle)-> CollectionViewStyle {
         return style.next()
     }

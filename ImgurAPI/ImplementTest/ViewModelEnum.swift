@@ -31,25 +31,26 @@ enum Pages: Int, Nextable {
     case none = 999
 }
 
-enum FetchStatus: Nextable {
+enum FetchStatus: Equatable, Nextable {
     typealias T = FetchStatus
 
     case wantFetch(Pages)
     case fetchIng(Pages)
     case success(Pages)
     case failure(Pages)
+    case finished(Pages)
     
     func next() -> T {
         switch self {
         case .wantFetch(let page):
             let next = page.next()
-            return  next == .none ? FetchStatus.success(next) : FetchStatus.fetchIng(next)
+            return  next == .none ? FetchStatus.finished(next) : FetchStatus.fetchIng(next)
         case .success(let page):
             let next = page.next()
-            return FetchStatus.wantFetch(next)
+            return  next == .none ? FetchStatus.finished(next) : FetchStatus.wantFetch(next)
         case .failure(let page):
             return FetchStatus.wantFetch(page)
-        case .fetchIng:
+        case .fetchIng, .finished:
             return self
         }
     }
@@ -63,6 +64,8 @@ enum FetchStatus: Nextable {
         case .success(let pages):
             return pages
         case .failure(let pages):
+            return pages
+        case .finished(let pages):
             return pages
         }
     }

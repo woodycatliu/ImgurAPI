@@ -85,7 +85,6 @@ extension ViewModel {
         if case let FetchStatus.wantFetch(page) = status {
             fetchStatus = .fetchIng(page)
             useCase.fetchImage(loader: loader, page.rawValue)
-                .receive(on: RunLoop.main)
                 .sink(receiveCompletion: { [weak self] in
                     if case Subscribers.Completion<Error>.failure = $0 {
                         self?.fetchStatus.failure()

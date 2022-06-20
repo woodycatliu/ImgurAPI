@@ -29,6 +29,7 @@
 		EFB31750285F964A002093A7 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB3174F285F964A002093A7 /* ImageLoader.swift */; };
 		EFB31753285FA8C1002093A7 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB31752285FA8C1002093A7 /* Cell.swift */; };
 		EFB31755285FA8EA002093A7 /* BigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB31754285FA8EA002093A7 /* BigCell.swift */; };
+		EFEAE5992860066D0019E229 /* RefreshFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAE5982860066D0019E229 /* RefreshFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		EFB3174F285F964A002093A7 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		EFB31752285FA8C1002093A7 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		EFB31754285FA8EA002093A7 /* BigCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCell.swift; sourceTree = "<group>"; };
+		EFEAE5982860066D0019E229 /* RefreshFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 			children = (
 				EFB31752285FA8C1002093A7 /* Cell.swift */,
 				EFB31754285FA8EA002093A7 /* BigCell.swift */,
+				EFEAE5982860066D0019E229 /* RefreshFooterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				EFB31755285FA8EA002093A7 /* BigCell.swift in Sources */,
 				AD4FA27B281AD44C00BBCACA /* SceneDelegate.swift in Sources */,
 				EFB31746285F5AD5002093A7 /* UseCase.swift in Sources */,
+				EFEAE5992860066D0019E229 /* RefreshFooterView.swift in Sources */,
 				AD875F2A281BF4380026479C /* GalleryImage.swift in Sources */,
 				EFB3174C285F88FB002093A7 /* CellViewModel.swift in Sources */,
 				AD4FA2AA281ADC9200BBCACA /* ImgurAPI.swift in Sources */,
@@ -539,7 +543,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XX5TS5R8N7;
+				DEVELOPMENT_TEAM = HMB28F9R4H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImgurAPI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -567,7 +571,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XX5TS5R8N7;
+				DEVELOPMENT_TEAM = HMB28F9R4H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImgurAPI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

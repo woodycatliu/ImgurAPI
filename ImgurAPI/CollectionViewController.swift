@@ -18,16 +18,20 @@ class CollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView!.register(Cell.self, forCellWithReuseIdentifier: Cell.description())
-        self.collectionView!.register(BigCell.self, forCellWithReuseIdentifier: BigCell.description())
-
+        collectionView!.register(Cell.self, forCellWithReuseIdentifier: Cell.description())
+        collectionView!.register(BigCell.self, forCellWithReuseIdentifier: BigCell.description())
+        collectionView.register(RefreshFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier:  RefreshFooterView.description())
+        configureNavigationBar()
         Binding()
         viewModel.fetchFirstPage()
-
-        
     }
 
-   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.isNavigationBarHidden = false
+    }
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return viewModel.numbersOfSection
     }
@@ -45,9 +49,16 @@ class CollectionViewController: UICollectionViewController {
         return cell
     }
 
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: RefreshFooterView.description(), for: indexPath) as! RefreshFooterView
+        
+        return footer
+    }
+
 }
 
-private func makeCollectionViewFlowlayout(_ style: CollectionViewStyle)-> UICollectionViewLayout {
+private func makeCollectionViewFlowlayout(_ style: CollectionViewStyle, isShowFooter: Bool = true)-> UICollectionViewLayout {
     let collectionViewLayout = UICollectionViewFlowLayout()
     let width = UIScreen.main.bounds.width
     let itemSize = style == .list ? CGSize(width: (width - 12) / 3, height: (width - 12) / 3) : CGSize(width: width, height: width - 80)
@@ -55,18 +66,36 @@ private func makeCollectionViewFlowlayout(_ style: CollectionViewStyle)-> UIColl
     collectionViewLayout.minimumLineSpacing = style == .list ? 3 : 20
     collectionViewLayout.itemSize = itemSize
     
+    if isShowFooter {
+        collectionViewLayout.footerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 70)
+    }
+    else {
+        collectionViewLayout.footerReferenceSize = .zero
+    }
+    
     return collectionViewLayout
 }
 
 // MARK: Binding
 extension CollectionViewController {
     fileprivate func Binding() {
-        viewModel.$images.sink(receiveValue: {_ in
+        viewModel.$images
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: {_ in
             self.collectionView.reloadData()
         }).store(in: &bag)
-                
-        viewModel.$style.sink(receiveValue: { [weak self] in
-            self?.collectionView.collectionViewLayout = makeCollectionViewFlowlayout($0)
+
+        viewModel.$fetchStatus
+            .removeDuplicates()
+            .filter {
+                if case FetchStatus.finished = $0 { return true }
+                return false
+            }
+            .sink(receiveValue: { [weak self] a in
+                self?.collectionView.reloadData()
+        }).store(in: &bag)
+
+        viewModel.$style.sink(receiveValue: { [weak self] _ in
             self?.collectionView.reloadData()
         }).store(in: &bag)
         
@@ -77,13 +106,52 @@ extension CollectionViewController {
     }
 }
 
+extension CollectionViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        
+        switch viewModel.fetchStatus {
+        case .success, .fetchIng:
+            return CGSize(width: collectionView.bounds.width, height: 70)
+        default:
+            return .zero
+
+
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return viewModel.style == .list ? 1 : 0
+       }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+           return viewModel.style == .list ? 3 : 20
+       }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let style = viewModel.style
+        let width = UIScreen.main.bounds.width
+        let itemSize = style == .list ? CGSize(width: (width - 12) / 3, height: (width - 12) / 3) : CGSize(width: width, height: width - 80)
+        return itemSize
+    }
+}
+
 // MARK: logic
 extension CollectionViewController {
     
+    private func configureNavigationBar() {
+        let itemButton = UIBarButtonItem(title: "ChangeStyle", style: .plain, target: self, action: #selector(rightBarButtonAction))
+        navigationItem.rightBarButtonItem = itemButton
+        navigationController?.navigationItem.rightBarButtonItem = itemButton
+    }
     private func loadMoreIfNeed(_ point: CGPoint) {
         let offsetHeight = point.y
-        if offsetHeight >= collectionView.contentSize.height - collectionView.bounds.height {
+        if offsetHeight > collectionView.contentSize.height - collectionView.bounds.height {
             self.viewModel.nextPage()
         }
+    }
+    
+    @objc private func rightBarButtonAction() {
+        viewModel.togleStyle()
     }
 }

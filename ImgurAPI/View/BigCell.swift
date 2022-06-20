@@ -21,6 +21,7 @@ class BigCell: Cell {
     override func configureUI() {
         contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .systemGray5
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
@@ -29,5 +30,14 @@ class BigCell: Cell {
         ])
         imageView.layer.cornerRadius = 25
         imageView.layer.masksToBounds = true
+        
+        imageView.addSubview(activityView)
+        activityView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
+
+        ])
+        activityView.startAnimating()
     }
 }

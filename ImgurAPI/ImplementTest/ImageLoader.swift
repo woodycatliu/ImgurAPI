@@ -15,20 +15,38 @@ protocol LoadImageHandler {
 }
 
 class ImageLoader {
+    private var bag = Set<AnyCancellable>()
     static let shared: ImageLoader = ImageLoader()
+    
+    let loaderCache: LoaderImageCache
+    
+    init(_ loaderCache:  LoaderImageCache = ImagesCache()) {
+        self.loaderCache = loaderCache
+    }
 }
 
 extension ImageLoader: LoadImageHandler {
  
     func loadImage(from url: URL) -> AnyPublisher<(Image, URL), Never> {
-        return URLSession.shared.dataTaskPublisher(for: url)
+        if let image = loaderCache.fetch(url as NSURL) {
+            return Just((image, url)).eraseToAnyPublisher()
+        }
+        
+       let publisher = URLSession.shared.dataTaskPublisher(for: url)
             .receive(on: DispatchQueue.global())
             .map { (data, response) -> Image? in return Image(data: data) }
             .catch { error in return Just(nil) }
             .compactMap { $0 }
             .map { ($0, url) }
             .print("Image loading \(url):")
-            .eraseToAnyPublisher()
+            .share()
+        
+        publisher
+            .sink(receiveValue: { [weak self] image, url in
+            self?.loaderCache.save(image, url as NSURL)
+        }).store(in: &bag)
+        
+        return publisher.eraseToAnyPublisher()
     }
     
     

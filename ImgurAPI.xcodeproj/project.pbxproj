@@ -21,6 +21,7 @@
 		AD875F2A281BF4380026479C /* GalleryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD875F29281BF4380026479C /* GalleryImage.swift */; };
 		AD875F2C281BF58C0026479C /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD875F2B281BF58C0026479C /* Gallery.swift */; };
 		AD875F2E281BF5950026479C /* GallerySearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD875F2D281BF5950026479C /* GallerySearchResult.swift */; };
+		EF75B5E3286C5FA600000B64 /* LoaderCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF75B5E2286C5FA600000B64 /* LoaderCache.swift */; };
 		EFB31746285F5AD5002093A7 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB31745285F5AD5002093A7 /* UseCase.swift */; };
 		EFB31748285F5C06002093A7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB31747285F5C06002093A7 /* ViewModel.swift */; };
 		EFB3174A285F7509002093A7 /* ViewModelEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB31749285F7509002093A7 /* ViewModelEnum.swift */; };
@@ -68,6 +69,7 @@
 		AD875F29281BF4380026479C /* GalleryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImage.swift; sourceTree = "<group>"; };
 		AD875F2B281BF58C0026479C /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		AD875F2D281BF5950026479C /* GallerySearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallerySearchResult.swift; sourceTree = "<group>"; };
+		EF75B5E2286C5FA600000B64 /* LoaderCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderCache.swift; sourceTree = "<group>"; };
 		EFB31745285F5AD5002093A7 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
 		EFB31747285F5C06002093A7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		EFB31749285F7509002093A7 /* ViewModelEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelEnum.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				EFB31749285F7509002093A7 /* ViewModelEnum.swift */,
 				EFB3174B285F88FB002093A7 /* CellViewModel.swift */,
 				EFB3174D285F8EDC002093A7 /* CollectionViewController.swift */,
+				EF75B5E2286C5FA600000B64 /* LoaderCache.swift */,
 			);
 			path = ImplementTest;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				AD4FA279281AD44C00BBCACA /* AppDelegate.swift in Sources */,
 				AD8434F028203C2200709C94 /* Publisher+Utils.swift in Sources */,
 				AD875F2E281BF5950026479C /* GallerySearchResult.swift in Sources */,
+				EF75B5E3286C5FA600000B64 /* LoaderCache.swift in Sources */,
 				AD875F2C281BF58C0026479C /* Gallery.swift in Sources */,
 				EFB31755285FA8EA002093A7 /* BigCell.swift in Sources */,
 				AD4FA27B281AD44C00BBCACA /* SceneDelegate.swift in Sources */,

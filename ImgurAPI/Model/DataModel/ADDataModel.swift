@@ -7,7 +7,16 @@
 
 import Foundation
 
-extension ADDataModel: CellInfo {}
+extension ADDataModel: CellInfo {
+    var link: String {
+        get {
+            return image
+        }
+        set {
+            image = newValue
+        }
+    }
+}
 
 struct ADDataModel: Codable {
     var vendor: String

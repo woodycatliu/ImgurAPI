@@ -11,7 +11,8 @@ import Combine
 protocol CollectionViewModelProtocol {
     var numbersOfSection: Int { get }
     func numberOfRowsInSection(_ section: Int)-> Int
-    func dataModelFoRowAt(_ indexPath: IndexPath)-> GalleryImage
+    func dataModelFoRowAt(_ indexPath: IndexPath)-> ImageContainer
+//    func didSelectedCell(_ indexPath: IndexPath)-> ImageContainer
 }
 
 class ViewModel {
@@ -47,8 +48,7 @@ class ViewModel {
 }
 
 extension ViewModel: CollectionViewModelProtocol {
-    
-    
+
     var numbersOfSection: Int {
         return 1
     }
@@ -57,13 +57,23 @@ extension ViewModel: CollectionViewModelProtocol {
         return images?.count ?? 0
     }
     
-    func dataModelFoRowAt(_ indexPath: IndexPath) -> GalleryImage {
+    func dataModelFoRowAt(_ indexPath: IndexPath) -> ImageContainer {
         guard let images = images,
               images.indices.contains(indexPath.row) else {
                   fatalError("images is out of range")
               }
         return images[indexPath.row]
     }
+    
+//    func didSelectedCell(_ indexPath: IndexPath)-> ImageContainer {
+//        guard let images = images,
+//              images.indices.contains(indexPath.row) else {
+//                  fatalError("images is out of range")
+//              }
+//        return images[indexPath.row]
+//    }
+    
+    
     
 }
 

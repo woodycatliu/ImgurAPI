@@ -45,7 +45,7 @@ class CollectionViewController: UICollectionViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:  viewModel.style == .list ? Cell.description() : BigCell.description(), for: indexPath) as! Cell
         let data = viewModel.dataModelFoRowAt(indexPath)
-        cell.setImage(data)
+        cell.setImage(image: data)
         return cell
     }
 
@@ -138,6 +138,7 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
         let itemSize = style == .list ? CGSize(width: (width - 12) / 3, height: (width - 12) / 3) : CGSize(width: width, height: width - 80)
         return itemSize
     }
+    
 }
 
 // MARK: logic
@@ -157,5 +158,19 @@ extension CollectionViewController {
     
     @objc private func rightBarButtonAction() {
         viewModel.togleStyle()
+    }
+}
+
+extension CollectionViewController {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+         let cell = collectionView.cellForItem(at: indexPath) as! Cell
+        
+        if let publisher = cell.viewModel.didSelected() {
+            publisher
+                .sink(receiveValue: {
+                    print("Cell type:", $0.type)
+                })
+                .store(in: &bag)
+        }
     }
 }

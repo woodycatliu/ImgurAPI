@@ -12,7 +12,7 @@ class Cell: UICollectionViewCell {
     let activityView: UIActivityIndicatorView  = UIActivityIndicatorView(style: .large)
     let imageView = UIImageView()
     private var bag = Set<AnyCancellable>()
-    let viewModel = CellViewModel()
+    let viewModel = ImageCellViewModel()
     fileprivate func binding() {
         viewModel.imageData
             .receive(on: DispatchQueue.main)
@@ -70,7 +70,15 @@ class Cell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+extension Cell {
+    
+    func setImage(image imageContainer: ImageContainer) {
+        viewModel.imageContainer = imageContainer
+    }
+    
     func setImage(_ data: GalleryImage) {
-        viewModel.gallertImage = data
+        viewModel.imageContainer = data
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GalleryImage: Decodable {
+struct GalleryImage: Decodable, ImageContainer {
     
     var id: String
     var title: String?

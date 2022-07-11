@@ -9,13 +9,12 @@ import Foundation
 import Combine
 
 
-protocol CellInfo {}
+protocol CellInfo: ImageContainer {}
 
-protocol CameraListCellViewModel {
-    var type: CellType { get }
-    var info: CellInfo { get }
+struct CameraListContainer {
+    var type: CellType
+    var info: CellInfo
 }
-
 
 enum CellType {
     case ad

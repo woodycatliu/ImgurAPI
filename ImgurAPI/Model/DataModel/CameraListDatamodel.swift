@@ -7,7 +7,16 @@
 
 import Foundation
 
-extension CameraInfo: CellInfo {}
+extension CameraInfo: CellInfo {
+    var link: String {
+        get {
+            return snapshot
+        }
+        set {
+            snapshot = newValue
+        }
+    }
+}
 
 struct DeviceInfo: Codable {
     var device: [CameraInfo]

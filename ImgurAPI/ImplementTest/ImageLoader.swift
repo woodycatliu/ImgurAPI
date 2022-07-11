@@ -43,11 +43,37 @@ extension ImageLoader: LoadImageHandler {
         
         publisher
             .sink(receiveValue: { [weak self] image, url in
-            self?.loaderCache.save(image, url as NSURL)
-        }).store(in: &bag)
+                let image = image.imgWithNewSize()!
+                self?.loaderCache.save(image, url as NSURL)
+            }).store(in: &bag)
         
         return publisher.eraseToAnyPublisher()
     }
     
     
+}
+
+extension UIImage {
+    /// 圖片尺寸
+    /// - Parameter size: 預設為螢幕 1/3
+    /// - Returns: UIImage?
+    public func imgWithNewSize(size: CGSize = CGSize(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3))-> UIImage? {
+        
+        var newSize = size
+        
+        if self.size.height > size.height {
+            newSize.width = size.height / self.size.height * self.size.width
+        }
+        
+        UIGraphicsBeginImageContext(newSize)
+        
+        self.draw(in: CGRect(origin: .zero, size: newSize))
+        
+        let newImg = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return newImg
+        
+    }
 }

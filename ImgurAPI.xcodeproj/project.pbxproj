@@ -31,6 +31,9 @@
 		EFB31753285FA8C1002093A7 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB31752285FA8C1002093A7 /* Cell.swift */; };
 		EFB31755285FA8EA002093A7 /* BigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB31754285FA8EA002093A7 /* BigCell.swift */; };
 		EFEAE5992860066D0019E229 /* RefreshFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAE5982860066D0019E229 /* RefreshFooterView.swift */; };
+		EFFAF89A287BCF58003842E0 /* ApiEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFAF899287BCF58003842E0 /* ApiEngine.swift */; };
+		EFFAF89C287BCFF7003842E0 /* CameraListDatamodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFAF89B287BCFF7003842E0 /* CameraListDatamodel.swift */; };
+		EFFAF89E287BD0A2003842E0 /* ADDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFAF89D287BD0A2003842E0 /* ADDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +83,9 @@
 		EFB31754285FA8EA002093A7 /* BigCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCell.swift; sourceTree = "<group>"; };
 		EFEAE5982860066D0019E229 /* RefreshFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshFooterView.swift; sourceTree = "<group>"; };
 		EFEAE59A286039040019E229 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EFFAF899287BCF58003842E0 /* ApiEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiEngine.swift; sourceTree = "<group>"; };
+		EFFAF89B287BCFF7003842E0 /* CameraListDatamodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraListDatamodel.swift; sourceTree = "<group>"; };
+		EFFAF89D287BD0A2003842E0 /* ADDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,7 @@
 		AD4FA277281AD44C00BBCACA /* ImgurAPI */ = {
 			isa = PBXGroup;
 			children = (
+				EFFAF89F287BD3B1003842E0 /* Camera */,
 				EFEAE59A286039040019E229 /* README.md */,
 				EFB3173F285F5A06002093A7 /* ImplementTest */,
 				AD4FA2AB281AE9B300BBCACA /* Model */,
@@ -174,6 +181,7 @@
 		AD4FA2AB281AE9B300BBCACA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EFFAF899287BCF58003842E0 /* ApiEngine.swift */,
 				AD4FA2AC281AE9BC00BBCACA /* DataModel */,
 			);
 			path = Model;
@@ -185,6 +193,8 @@
 				AD875F29281BF4380026479C /* GalleryImage.swift */,
 				AD875F2B281BF58C0026479C /* Gallery.swift */,
 				AD875F2D281BF5950026479C /* GallerySearchResult.swift */,
+				EFFAF89B287BCFF7003842E0 /* CameraListDatamodel.swift */,
+				EFFAF89D287BD0A2003842E0 /* ADDataModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -220,6 +230,13 @@
 				EFEAE5982860066D0019E229 /* RefreshFooterView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		EFFAF89F287BD3B1003842E0 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,11 +380,14 @@
 				AD8434F028203C2200709C94 /* Publisher+Utils.swift in Sources */,
 				AD875F2E281BF5950026479C /* GallerySearchResult.swift in Sources */,
 				EF75B5E3286C5FA600000B64 /* LoaderCache.swift in Sources */,
+				EFFAF89A287BCF58003842E0 /* ApiEngine.swift in Sources */,
 				AD875F2C281BF58C0026479C /* Gallery.swift in Sources */,
 				EFB31755285FA8EA002093A7 /* BigCell.swift in Sources */,
 				AD4FA27B281AD44C00BBCACA /* SceneDelegate.swift in Sources */,
+				EFFAF89E287BD0A2003842E0 /* ADDataModel.swift in Sources */,
 				EFB31746285F5AD5002093A7 /* UseCase.swift in Sources */,
 				EFEAE5992860066D0019E229 /* RefreshFooterView.swift in Sources */,
+				EFFAF89C287BCFF7003842E0 /* CameraListDatamodel.swift in Sources */,
 				AD875F2A281BF4380026479C /* GalleryImage.swift in Sources */,
 				EFB3174C285F88FB002093A7 /* CellViewModel.swift in Sources */,
 				AD4FA2AA281ADC9200BBCACA /* ImgurAPI.swift in Sources */,

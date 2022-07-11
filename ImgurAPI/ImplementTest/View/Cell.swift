@@ -15,6 +15,7 @@ class Cell: UICollectionViewCell {
     let viewModel = CellViewModel()
     fileprivate func binding() {
         viewModel.imageData
+            .receive(on: DispatchQueue.main)
             .map { $0 }
             .assign(to: \.image, on: imageView)
             .store(in: &bag)

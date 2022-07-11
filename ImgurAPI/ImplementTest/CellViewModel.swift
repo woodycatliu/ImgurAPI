@@ -36,7 +36,7 @@ class CellViewModel {
         loadTask?.cancel()
 
         loadTask = loader.loadImage(from: url)
-            .receive(on: RunLoop.main)
+//            .receive(on: RunLoop.main)
             .filter { $0.1.absoluteString == gallertImage.link }
             .map { $0.0 }
             .sink(receiveValue: imageData.send)
